@@ -1,0 +1,44 @@
+==================================================
+Regex literal containing an HTML comment opener
+==================================================
+
+export const f = (s: string) => s.replace(/<!--x/g, " ");
+
+const r = /<!--x/g;
+const q = /<!--/g;
+
+---
+
+(program
+  (export_statement
+    (lexical_declaration
+      (variable_declarator
+        (identifier)
+        (arrow_function
+          (formal_parameters
+            (required_parameter
+              (identifier)
+              (type_annotation
+                (predefined_type))))
+          (call_expression
+            (member_expression
+              (identifier)
+              (property_identifier))
+            (arguments
+              (regex
+                (regex_pattern)
+                (regex_flags))
+              (string
+                (string_fragment))))))))
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (regex
+        (regex_pattern)
+        (regex_flags))))
+  (lexical_declaration
+    (variable_declarator
+      (identifier)
+      (regex
+        (regex_pattern)
+        (regex_flags)))))

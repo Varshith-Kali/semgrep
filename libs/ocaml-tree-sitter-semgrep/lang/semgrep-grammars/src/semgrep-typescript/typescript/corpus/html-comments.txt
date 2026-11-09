@@ -16,20 +16,20 @@ x + 1; --> for some reason you can put text after a close comment.
 ---
 
 (program
-  (comment)
+  (html_comment)
   (expression_statement
     (binary_expression
       (identifier)
       (identifier)))
-  (comment)
+  (html_comment)
   (expression_statement
     (binary_expression
       (identifier)
       (number)))
-  (comment)
-  (comment)
-  (comment)
-  (comment)
-  (comment))
+  (html_comment)
+  (html_comment)
+  (html_comment)
+  (html_comment)
+  (html_comment))
 
 

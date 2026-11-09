@@ -1,0 +1,1 @@
+Fix TypeScript parser skipping the rest of a file when a regex literal contains `<!--`.
