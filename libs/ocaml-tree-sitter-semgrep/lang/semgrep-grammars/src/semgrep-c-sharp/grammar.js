@@ -66,6 +66,25 @@ module.exports = grammar(standard_grammar, {
       );
     },
 
+    // Allow a trailing comma in bracketed argument lists. The upstream
+    // grammar (tree-sitter-c-sharp e1384e2) predates C# 12 collection
+    // expressions, so `[a, b,]` falls back to `element_binding_expression`
+    // via this rule; without the trailing comma the parse fails with an
+    // ERROR node and Semgrep reports PartialParsing, silently dropping
+    // rule matches after the expression in the same method (gh-12033).
+    // This mirrors upstream, which also allows the trailing comma here
+    // (tree-sitter-c-sharp af29416, C# 14 bump). The shape of the node
+    // is unchanged, so no OCaml CST or mapping changes are needed.
+    // (commaSep1 is a helper local to the upstream grammar, so the
+    // comma-separated list is spelled out here.)
+    bracketed_argument_list: $ => seq(
+      '[',
+      $.argument,
+      repeat(seq(',', $.argument)),
+      optional(','),
+      ']'
+    ),
+
     _declaration: ($, previous) => {
       return choice(
         ...previous.members,

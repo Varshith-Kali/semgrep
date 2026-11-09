@@ -1,0 +1,91 @@
+================================================================================
+Collection expression with trailing comma after member access elements
+================================================================================
+
+class K {
+  void Run(string cmd) {
+    Color[] items = [Color.Red, Color.Green,];
+    System.Diagnostics.Process.Start(cmd);
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    (identifier)
+    (declaration_list
+      (method_declaration
+        (predefined_type)
+        (identifier)
+        (parameter_list
+          (parameter
+            (predefined_type)
+            (identifier)))
+        (block
+          (local_declaration_statement
+            (variable_declaration
+              (array_type
+                (identifier)
+                (array_rank_specifier))
+              (variable_declarator
+                (identifier)
+                (equals_value_clause
+                  (element_binding_expression
+                    (bracketed_argument_list
+                      (argument
+                        (member_access_expression
+                          (identifier)
+                          (identifier)))
+                      (argument
+                        (member_access_expression
+                          (identifier)
+                          (identifier)))))))))
+          (expression_statement
+            (invocation_expression
+              (member_access_expression
+                (member_access_expression
+                  (member_access_expression
+                    (identifier)
+                    (identifier))
+                  (identifier))
+                (identifier))
+              (argument_list
+                (argument
+                  (identifier))))))))))
+
+================================================================================
+Collection expression with trailing comma after identifiers
+================================================================================
+
+class K {
+  void Run() {
+    int[] xs = [a, b,];
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(compilation_unit
+  (class_declaration
+    (identifier)
+    (declaration_list
+      (method_declaration
+        (predefined_type)
+        (identifier)
+        (parameter_list)
+        (block
+          (local_declaration_statement
+            (variable_declaration
+              (array_type
+                (predefined_type)
+                (array_rank_specifier))
+              (variable_declarator
+                (identifier)
+                (equals_value_clause
+                  (element_binding_expression
+                    (bracketed_argument_list
+                      (argument
+                        (identifier))
+                      (argument
+                        (identifier)))))))))))))

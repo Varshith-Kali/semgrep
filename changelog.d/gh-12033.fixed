@@ -1,0 +1,1 @@
+Fix C# parser failing on collection expressions with a trailing comma after identifier or member access elements, which silently dropped later findings in the same method.
